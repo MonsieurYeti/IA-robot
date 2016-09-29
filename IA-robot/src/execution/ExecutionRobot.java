@@ -55,7 +55,6 @@ public class ExecutionRobot {
 		robotService.diminuerY(robot);
 		System.out.println("Position en X : " + robotService.donnerPositionX(robot));
 		System.out.println("Position en Y : " + robotService.donnerPositionY(robot));
-		System.out.println("");
 
 	}
 }
