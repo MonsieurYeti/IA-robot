@@ -1,4 +1,4 @@
-package java;
+package java.entites;
 
 public class Robot {
 
@@ -8,6 +8,19 @@ public class Robot {
 	 * Constructeurs
 	 */
 
+	/**
+	 * Constructeur vide du robot
+	 */
+	public Robot() {
+
+	}
+
+	/**
+	 * Constructeur avec position du robot
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	public Robot(int x, int y) {
 		this.coordonnees.setPositionX(x);
 		this.coordonnees.setPositionY(y);

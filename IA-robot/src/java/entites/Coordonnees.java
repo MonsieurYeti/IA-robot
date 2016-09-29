@@ -1,4 +1,4 @@
-package java;
+package java.entites;
 
 /**
  * @author ggaillard
@@ -12,7 +12,13 @@ public class Coordonnees {
 	/*
 	 * Constructeurs
 	 */
-	
+
+	/**
+	 * Constructeur simple des coordonnees
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	public Coordonnees(int x, int y) {
 		this.positionX = x;
 		this.positionY = y;
