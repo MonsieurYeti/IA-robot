@@ -6,27 +6,36 @@ package java;
  */
 public class Coordonnees {
 
-	private int coordX;
-	private int coordY;
+	private int positionX;
+	private int positionY;
+
+	/*
+	 * Constructeurs
+	 */
+	
+	public Coordonnees(int x, int y) {
+		this.positionX = x;
+		this.positionY = y;
+	}
 
 	/*
 	 * Getters et setters
 	 */
 
 	public int getPositionX() {
-		return coordX;
+		return positionX;
 	}
 
 	public void setPositionX(int positionX) {
-		this.coordX = positionX;
+		this.positionX = positionX;
 	}
 
 	public int getPositionY() {
-		return coordY;
+		return positionY;
 	}
 
 	public void setPositionY(int positionY) {
-		this.coordY = positionY;
+		this.positionY = positionY;
 	}
 
 }
