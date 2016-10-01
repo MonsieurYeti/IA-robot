@@ -1,6 +1,6 @@
 
 /**
- * @author ggaillard //cet abruti
+ * @author ggaillard
  *
  */
 public class ExecutionRobot {
