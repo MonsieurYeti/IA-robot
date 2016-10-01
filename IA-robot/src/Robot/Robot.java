@@ -34,7 +34,7 @@ public class Robot {
 	 * 
 	 * @param nombreDeCases
 	 */
-	public void avancerX() {
+	public void augmenterX() {
 		this.positionX++;
 	}
 
@@ -43,7 +43,7 @@ public class Robot {
 	 * 
 	 * @param nombreDeCases
 	 */
-	public void reculerX() {
+	public void diminuerX() {
 		this.positionX--;
 	}
 
@@ -52,7 +52,7 @@ public class Robot {
 	 * 
 	 * @param nombreDeCases
 	 */
-	public void avancerY() {
+	public void augmenterY() {
 		this.positionY++;
 	}
 
@@ -61,7 +61,7 @@ public class Robot {
 	 * 
 	 * @param nombreDeCases
 	 */
-	public void reculerY() {
+	public void diminuerY() {
 		this.positionY--;
 	}
 

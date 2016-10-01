@@ -24,25 +24,25 @@ public class Execution {
 
 		// On recule de 1 selon X et on affiche la position
 		if(environnement.testerCasePossible(robot.positionX-1, robot.positionY)){
-			robot.reculerX();			
+			robot.diminuerX();
 		}
 		robot.afficherPosition();
 
 		// On recule de 1 selon Y et on affiche la position
 		if(environnement.testerCasePossible(robot.positionX, robot.positionY-1)){
-			robot.reculerY();		
+			robot.diminuerY();
 		}
 		robot.afficherPosition();
 
 		// On avance de 1 selon X et on affiche la position
 		if(environnement.testerCasePossible(robot.positionX+1, robot.positionY)){
-			robot.avancerX();			
+			robot.augmenterX();
 		}
 		robot.afficherPosition();
 
 		// On avance de 1 selon Y et on affiche la position
 		if(environnement.testerCasePossible(robot.positionX, robot.positionY+1)){
-			robot.avancerY();			
+			robot.augmenterY();
 		}
 		robot.afficherPosition();
 
