@@ -16,7 +16,7 @@ public class ExecutionRobot {
 
 		// ---------On peut mettre la suite dans un while(true)---------
 
-		// On affiche la position de départ
+		// On affiche la position de dï¿½part
 		robot.afficherPosition();
 
 		// On avance de 1 selon X et on affiche la position
