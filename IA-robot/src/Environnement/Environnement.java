@@ -82,4 +82,24 @@ public class Environnement {
 			return false;
 		}
 	}
+
+	/**
+	 * Ajoute de la poussière à la case voulue
+	 * 
+	 * @param x
+	 * @param y
+	 */
+	public void ajouterPoussiere(int x, int y) {
+		cases[x][y].poussiere = true;
+	}
+
+	/**
+	 * Ajoute un bijou à la case voulue
+	 * 
+	 * @param x
+	 * @param y
+	 */
+	public void ajouterBijou(int x, int y) {
+		cases[x][y].bijou = true;
+	}
 }
