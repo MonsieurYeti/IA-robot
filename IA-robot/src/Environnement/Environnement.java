@@ -6,7 +6,7 @@ package Environnement;
  */
 public class Environnement {
 
-	public Case[][] cases = new Case[4][2];
+	public Case[][] cases = new Case[5][3];
 
 	/*
 	 * Constructeurs
@@ -16,22 +16,22 @@ public class Environnement {
 
 		// On crée les cases de l'environnement (null : la case n'existe pas)
 		cases[0][0] = new Case(0, 0);
-		cases[0][1] = new Case(0, 1);
-		cases[0][2] = new Case(0, 2);
-		cases[0][3] = null;
-		cases[0][4] = null;
+		cases[1][0] = new Case(0, 1);
+		cases[2][0] = new Case(0, 2);
+		cases[3][0] = null;
+		cases[4][0] = null;
 
-		cases[1][0] = new Case(1, 0);
+		cases[0][1] = new Case(1, 0);
 		cases[1][1] = new Case(1, 1);
-		cases[1][2] = new Case(1, 2);
-		cases[1][3] = new Case(1, 3);
-		cases[1][4] = new Case(1, 4);
+		cases[2][1] = new Case(1, 2);
+		cases[3][1] = new Case(1, 3);
+		cases[4][1] = new Case(1, 4);
 
-		cases[2][0] = new Case(2, 0);
-		cases[2][1] = new Case(2, 1);
+		cases[0][2] = new Case(2, 0);
+		cases[1][2] = new Case(2, 1);
 		cases[2][2] = new Case(2, 2);
-		cases[2][3] = null;
-		cases[2][4] = null;
+		cases[3][2] = null;
+		cases[4][2] = null;
 	}
 
 	/*
@@ -76,10 +76,14 @@ public class Environnement {
 	 * @return true si la case existe, false sinon
 	 */
 	public boolean testerCasePossible(int x, int y) {
-		if (cases[x][y] != null) {
-			return true;
-		} else {
+		if (x < 0 || x > 4 || y < 0 || y > 2) {
 			return false;
+		} else {
+			if (cases[x][y] != null) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
 
