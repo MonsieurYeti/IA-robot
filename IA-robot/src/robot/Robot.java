@@ -64,7 +64,7 @@ public class Robot {
 	 * @param y
 	 */
 	public void ajouterCaseInvalideCarte(int x, int y) {
-		if (x > 0 && x < tailleTableauX && y > 0 && y < tailleTableauY) {
+		if (x >= 0 && x < tailleTableauX && y >= 0 && y < tailleTableauY) {
 			this.carte[x][y] = "0";
 		}
 	}

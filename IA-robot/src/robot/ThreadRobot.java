@@ -63,6 +63,18 @@ public class ThreadRobot implements Runnable {
 			} else {
 				testerCaseSuivanteAvantPremierMur();
 			}
+
+			// // Affiche la map
+			// for (int y = 0; y < 12; y++) {
+			// System.out.println(robot.carte[0][y] + " " + robot.carte[1][y] +
+			// " " + robot.carte[2][y] + " "
+			// + robot.carte[3][y] + " " + robot.carte[4][y] + " " +
+			// robot.carte[5][y] + " "
+			// + robot.carte[6][y] + " " + robot.carte[7][y] + " " +
+			// robot.carte[8][y] + " "
+			// + robot.carte[9][y] + " " + robot.carte[10][y] + " " +
+			// robot.carte[11][y]);
+			// }
 		}
 	}
 

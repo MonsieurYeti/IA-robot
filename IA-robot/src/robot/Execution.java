@@ -12,21 +12,21 @@ public class Execution {
 	public static void main(String[] args) {
 
 		// On instancie le robot et l'environnement
-		int departPositionX = 1;
+		int departPositionX = 0;
 		int departPositionY = 2;
 		Orientation orientation = Orientation.N;
 
 		Environnement environnement = new Environnement();
 		Robot robot = new Robot(departPositionX, departPositionY, orientation);
+		// Le timer est dans la méthode "avancer" du robot, en millisecondes
 
 		// Création des threads
 		Thread threadRobot = new Thread(new ThreadRobot(robot, environnement));
 		Thread threadEnvironnement = new Thread(new ThreadEnvironnement(environnement));
 
-
 		// Démarrage des threads
 		threadRobot.start();
-		//threadEnvironnement.start();
+		// threadEnvironnement.start();
 
 		// Tant que les threads sont en cours on attend
 		while (threadRobot.isAlive())
