@@ -1,5 +1,7 @@
 package environnement;
 
+import robot.Robot;
+
 /**
  * @author ggaillard
  *
@@ -71,19 +73,66 @@ public class Environnement {
 	/**
 	 * Teste si la case demandée existe
 	 * 
-	 * @param x
-	 * @param y
+	 * @param robot
 	 * @return true si la case existe, false sinon
 	 */
-	public boolean testerCasePossible(int x, int y) {
-		if (x < 0 || x > 4 || y < 0 || y > 2) {
+	public boolean testerCaseSuivante(Robot robot) {
+		switch (robot.orientation) {
+		case N:
+			return testerCasePossible(robot.positionX, robot.positionY - 1);
+		case E:
+			return testerCasePossible(robot.positionX + 1, robot.positionY);
+		case S:
+			return testerCasePossible(robot.positionX, robot.positionY + 1);
+		case O:
+			return testerCasePossible(robot.positionX - 1, robot.positionY);
+		default:
+			System.out.println("testerCasSuivante ne va pas");
 			return false;
-		} else {
-			if (cases[x][y] != null) {
-				return true;
-			} else {
-				return false;
-			}
+		}
+	}
+
+	/**
+	 * Teste si la case demandée existe
+	 * 
+	 * @param robot
+	 * @return true si la case existe, false sinon
+	 */
+	public boolean testerCaseADroite(Robot robot) {
+		switch (robot.orientation) {
+		case N:
+			return testerCasePossible(robot.positionX + 1, robot.positionY);
+		case E:
+			return testerCasePossible(robot.positionX, robot.positionY + 1);
+		case S:
+			return testerCasePossible(robot.positionX - 1, robot.positionY);
+		case O:
+			return testerCasePossible(robot.positionX, robot.positionY - 1);
+		default:
+			System.out.println("testerCasSuivante ne va pas");
+			return false;
+		}
+	}
+
+	/**
+	 * Teste si la case demandée existe
+	 * 
+	 * @param robot
+	 * @return true si la case existe, false sinon
+	 */
+	public boolean testerCaseAGauche(Robot robot) {
+		switch (robot.orientation) {
+		case N:
+			return testerCasePossible(robot.positionX - 1, robot.positionY);
+		case E:
+			return testerCasePossible(robot.positionX, robot.positionY - 1);
+		case S:
+			return testerCasePossible(robot.positionX + 1, robot.positionY);
+		case O:
+			return testerCasePossible(robot.positionX, robot.positionY + 1);
+		default:
+			System.out.println("testerCasSuivante ne va pas");
+			return false;
 		}
 	}
 
@@ -105,5 +154,24 @@ public class Environnement {
 	 */
 	public void ajouterBijou(int x, int y) {
 		cases[x][y].bijou = true;
+	}
+
+	/**
+	 * Teste si la case passée en paramètre est possible
+	 * 
+	 * @param x
+	 * @param y
+	 * @return true si la case demandée est possible, false sinon
+	 */
+	public boolean testerCasePossible(int x, int y) {
+		if (x < 0 || x > 4 || y < 0 || y > 2) {
+			return false;
+		} else {
+			if (cases[x][y] != null) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 }

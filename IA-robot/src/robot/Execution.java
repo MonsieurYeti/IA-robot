@@ -17,50 +17,52 @@ public class Execution {
 		Environnement environnement = new Environnement();
 		Robot robot;
 
-		int departPositionX = 0;
-		int departPositionY = 0;
+		int departPositionX = 2;
+		int departPositionY = 2;
+		Orientation orientation = Orientation.N;
 
 		if (environnement.testerCasePossible(departPositionX, departPositionY)) {
-			robot = new Robot(departPositionX, departPositionY);
-			robot.carte[robot.positionX][robot.positionY]=true;
+			robot = new Robot(departPositionX, departPositionY, orientation);
+			robot.ajouterCaseValideCarte();
 		} else {
-			System.out.println("Position de départ impossible");
+			System.out.println("Position ou orientation de départ impossible");
 			return;
 		}
 
-		// ---------On peut mettre la suite dans un while(true)---------
-
-		// On affiche la position de depart
 		robot.afficherPosition();
 
-		// On recule de 1 selon X et on affiche la position
-		if (environnement.testerCasePossible(robot.positionX - 1, robot.positionY)) {
-			robot.diminuerX();
-			robot.ajouterCaseValideCarte();
-		}else{
-			robot.ajouterCaseImpossibleCarte(robot.positionX - 1, robot.positionY);
+		while (!(robot.positionX == departPositionX && robot.positionY == departPositionY && robot.murTouche)) {
+
+			if (robot.murTouche) {
+
+				if (environnement.testerCaseAGauche(robot)) {
+					robot.tournerAGauche();
+				}
+
+				if (environnement.testerCaseSuivante(robot)) {
+					robot.avancer();
+					robot.ajouterCaseValideCarte();
+				} else {
+					robot.tournerADroite();
+				}
+				robot.afficherPosition();
+			} else {
+				if (environnement.testerCaseSuivante(robot)) {
+					robot.avancer();
+					robot.ajouterCaseValideCarte();
+				} else {
+					robot.tournerADroite();
+					robot.murTouche = true;
+				}
+				robot.afficherPosition();
+			}
 		}
-		robot.afficherPosition();
 
-		// On recule de 1 selon Y et on affiche la position
-		if (environnement.testerCasePossible(robot.positionX, robot.positionY - 1)) {
-			robot.diminuerY();
-			robot.ajouterCaseValideCarte();
+		for (int x = 0; x < 12; x++) {
+			System.out.println(robot.carte[x][0] + " " + robot.carte[x][1] + " " + robot.carte[x][2] + " "
+					+ robot.carte[x][3] + " " + robot.carte[x][4] + " " + robot.carte[x][5] + " " + robot.carte[x][6]
+					+ " " + robot.carte[x][7] + " " + robot.carte[x][8] + " " + robot.carte[x][9] + " "
+					+ robot.carte[x][10] + " " + robot.carte[x][11]);
 		}
-		robot.afficherPosition();
-
-		// On avance de 1 selon X et on affiche la position
-		if (environnement.testerCasePossible(robot.positionX + 1, robot.positionY)) {
-			robot.augmenterX();
-			robot.ajouterCaseValideCarte();
-		}
-		robot.afficherPosition();
-
-		// On avance de 1 selon Y et on affiche la position
-		if (environnement.testerCasePossible(robot.positionX, robot.positionY + 1)) {
-			robot.augmenterY();
-			robot.ajouterCaseValideCarte();
-		}
-		robot.afficherPosition();
 	}
 }

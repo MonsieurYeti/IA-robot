@@ -8,6 +8,8 @@ public class Robot {
 
 	public int positionX;
 	public int positionY;
+	public Orientation orientation;
+	public boolean murTouche = false;
 
 	public boolean[][] carte = new boolean[12][12];
 
@@ -15,9 +17,16 @@ public class Robot {
 	 * Constructeurs
 	 */
 
-	public Robot(int x, int y) {
+	public Robot(int x, int y, Orientation orientation) {
 		this.positionX = x;
 		this.positionY = y;
+		this.orientation = orientation;
+		
+		for (x=0;x<12;x++) {
+			for (y=0;y<12;y++) {
+				carte[x][y] = false;
+			}
+		}
 	}
 
 	/*
@@ -30,43 +39,7 @@ public class Robot {
 	public void afficherPosition() {
 		System.out.println("X : " + this.positionX + ", Y : " + this.positionY);
 	}
-
-	/**
-	 * Avance le robot suivant X du nombre de cases voulu
-	 * 
-	 * @param nombreDeCases
-	 */
-	public void augmenterX() {
-		this.positionX++;
-	}
-
-	/**
-	 * Recule le robot suivant X du nombre de cases voulu
-	 * 
-	 * @param nombreDeCases
-	 */
-	public void diminuerX() {
-		this.positionX--;
-	}
-
-	/**
-	 * Avance le robot suivant Y du nombre de cases voulu
-	 * 
-	 * @param nombreDeCases
-	 */
-	public void augmenterY() {
-		this.positionY++;
-	}
-
-	/**
-	 * Recule le robot suivant Y du nombre de cases voulu
-	 * 
-	 * @param nombreDeCases
-	 */
-	public void diminuerY() {
-		this.positionY--;
-	}
-
+	
 	/**
 	 * Ajoute la case courante comme case possible dans la carte
 	 */
@@ -75,9 +48,72 @@ public class Robot {
 	}
 
 	/**
-	 * Ajoute la case courante comme case impossible dans la carte
+	 * Fait tourner l'orientation du robot vers la droite
 	 */
-	public void ajouterCaseImpossibleCarte(int x, int y) {
-		this.carte[x][y] = false;
+	public void tournerADroite() {
+		switch (orientation) {
+		case N:
+			orientation = Orientation.E;
+			break;
+		case E:
+			orientation = Orientation.S;
+			break;
+		case S:
+			orientation = Orientation.O;
+			break;
+		case O:
+			orientation = Orientation.N;
+			break;
+		default:
+			System.out.println("L'orientation du robot est impossible");
+			break;
+		}
+	}
+
+	/**
+	 * Fait tourner l'orientation du robot vers la gauche
+	 */
+	public void tournerAGauche() {
+		switch (orientation) {
+		case N:
+			orientation = Orientation.O;
+			break;
+		case O:
+			orientation = Orientation.S;
+			break;
+		case S:
+			orientation = Orientation.E;
+			break;
+		case E:
+			orientation = Orientation.N;
+			break;
+		default:
+			System.out.println("L'orientation du robot est impossible");
+			break;
+		}
+	}
+
+	/**
+	 * Fait avancer le robot d'une case suivant sa position
+	 */
+	public void avancer() {
+		switch (orientation) {
+		case N:
+			this.positionY--;
+			break;
+		case E:
+			this.positionX++;
+			break;
+		case S:
+			this.positionY++;
+			break;
+		case O:
+			this.positionX--;
+			break;
+		default:
+			System.out.println("L'orientation du robot est impossible");
+			break;
+		
+		}
 	}
 }

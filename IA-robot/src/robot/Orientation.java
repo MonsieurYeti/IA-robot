@@ -1,6 +1,6 @@
 package robot;
 
-public enum Oriention {
+public enum Orientation {
 
 	N,
 	E,
