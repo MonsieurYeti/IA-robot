@@ -12,33 +12,32 @@ public class Execution {
 	public static void main(String[] args) {
 
 		// On instancie le robot et l'environnement
-		int departPositionX = 0;
-		int departPositionY = 1;
+		int departPositionX = 1;
+		int departPositionY = 2;
 		Orientation orientation = Orientation.N;
 
 		Environnement environnement = new Environnement();
 		Robot robot = new Robot(departPositionX, departPositionY, orientation);
 
 		// Création des threads
-		Thread threadRobot = new Thread(
-				new ThreadRobot(robot, environnement, departPositionX, departPositionY, orientation));
+		Thread threadRobot = new Thread(new ThreadRobot(robot, environnement));
 		Thread threadEnvironnement = new Thread(new ThreadEnvironnement(environnement));
 
 
 		// Démarrage des threads
 		threadRobot.start();
-		threadEnvironnement.start();
+		//threadEnvironnement.start();
 
 		// Tant que les threads sont en cours on attend
 		while (threadRobot.isAlive())
 			;
 
 		// Affiche la map
-		for (int x = 0; x < 12; x++) {
-			System.out.println(robot.carte[x][0] + " " + robot.carte[x][1] + " " + robot.carte[x][2] + " "
-					+ robot.carte[x][3] + " " + robot.carte[x][4] + " " + robot.carte[x][5] + " " + robot.carte[x][6]
-					+ " " + robot.carte[x][7] + " " + robot.carte[x][8] + " " + robot.carte[x][9] + " "
-					+ robot.carte[x][10] + " " + robot.carte[x][11]);
+		for (int y = 0; y < 12; y++) {
+			System.out.println(robot.carte[0][y] + " " + robot.carte[1][y] + " " + robot.carte[2][y] + " "
+					+ robot.carte[3][y] + " " + robot.carte[4][y] + " " + robot.carte[5][y] + " " + robot.carte[6][y]
+					+ " " + robot.carte[7][y] + " " + robot.carte[8][y] + " " + robot.carte[9][y] + " "
+					+ robot.carte[10][y] + " " + robot.carte[11][y]);
 		}
 	}
 }

@@ -16,13 +16,12 @@ public class ThreadRobot implements Runnable {
 	 * Constructeurs
 	 */
 
-	public ThreadRobot(Robot robot, Environnement environnement, int departPositionX, int departPositionY,
-			Orientation orientation) {
+	public ThreadRobot(Robot robot, Environnement environnement) {
 		this.robot = robot;
 		this.environnement = environnement;
-		this.departPositionX = departPositionX;
-		this.departPositionY = departPositionY;
-		this.orientation = orientation;
+		this.departPositionX = robot.positionX;
+		this.departPositionY = robot.positionY;
+		this.orientation = robot.orientation;
 	}
 
 	/*
@@ -55,44 +54,58 @@ public class ThreadRobot implements Runnable {
 
 			// déclacements
 			if (robot.murTouche) {
+				testerAGauche();
+				testerCaseSuivante();
 
-				if (environnement.testerCaseAGauche(robot)) {
-					robot.tournerAGauche();
-				}
-
-				if (environnement.testerCaseSuivante(robot)) {
-					robot.avancer();
-					robot.ajouterCaseActuelleValideCarte();
-
-					// timer pour ralentir
-					long start = System.currentTimeMillis();
-					while ((System.currentTimeMillis() - start) < 500)
-						;
-					robot.afficherPosition();
-				} else {
-					robot.tournerADroite();
-				}
-				
 				// Compteur pour s'arrêter après la découverte du contour,
 				// mettre en commentaire sinon
-				// cpt++;
-
+				cpt++;
 			} else {
-				if (environnement.testerCaseSuivante(robot)) {
-					robot.avancer();
-					robot.ajouterCaseActuelleValideCarte();
+				testerCaseSuivanteAvantPremierMur();
+			}
+		}
+	}
 
-					// timer pour ralentir
-					long start = System.currentTimeMillis();
-					while ((System.currentTimeMillis() - start) < 500)
-						;
-					robot.afficherPosition();
-				} else {
-					robot.tournerADroite();
-					robot.murTouche = true;
-					premierMurX = robot.positionX;
-					premierMurY = robot.positionY;
-				}
+	private void testerCaseSuivanteAvantPremierMur() {
+		if (environnement.testerCaseSuivante(robot)) {
+			robot.avancer();
+			robot.ajouterCaseActuelleValideCarte();
+			robot.afficherPosition();
+		} else {
+			robot.tournerADroite();
+			robot.murTouche = true;
+			premierMurX = robot.positionX;
+			premierMurY = robot.positionY;
+		}
+	}
+
+	private void testerCaseSuivante() {
+		if (environnement.testerCaseSuivante(robot)) {
+			robot.avancer();
+			robot.ajouterCaseActuelleValideCarte();
+			robot.afficherPosition();
+		} else {
+			robot.tournerADroite();
+		}
+	}
+
+	private void testerAGauche() {
+		if (environnement.testerCaseAGauche(robot)) {
+			robot.tournerAGauche();
+		} else {
+			switch (robot.orientation) {
+			case N:
+				robot.ajouterCaseInvalideCarte(robot.positionX - 1, robot.positionY);
+				break;
+			case E:
+				robot.ajouterCaseInvalideCarte(robot.positionX, robot.positionY - 1);
+				break;
+			case S:
+				robot.ajouterCaseInvalideCarte(robot.positionX + 1, robot.positionY);
+				break;
+			case O:
+				robot.ajouterCaseInvalideCarte(robot.positionX, robot.positionY + 1);
+				break;
 			}
 		}
 	}

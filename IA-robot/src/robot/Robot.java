@@ -15,7 +15,10 @@ public class Robot {
 	public int compteurBijoux = 0;
 	public int compteurElectricite = 0;
 
-	public boolean[][] carte = new boolean[12][12];
+	private int tailleTableauX = 12;
+	private int tailleTableauY = 12;
+
+	public String[][] carte = new String[tailleTableauX][tailleTableauY];
 
 	/*
 	 * Constructeurs
@@ -31,7 +34,7 @@ public class Robot {
 
 		for (x = 0; x < 12; x++) {
 			for (y = 0; y < 12; y++) {
-				carte[x][y] = false;
+				carte[x][y] = "X";
 			}
 		}
 	}
@@ -51,7 +54,7 @@ public class Robot {
 	 * Ajoute la case courante comme case possible dans la carte
 	 */
 	public void ajouterCaseActuelleValideCarte() {
-		this.carte[this.positionX][this.positionY] = true;
+		this.carte[this.positionX][this.positionY] = "1";
 	}
 
 	/**
@@ -61,7 +64,9 @@ public class Robot {
 	 * @param y
 	 */
 	public void ajouterCaseInvalideCarte(int x, int y) {
-		this.carte[x][y] = false;
+		if (x > 0 && x < tailleTableauX && y > 0 && y < tailleTableauY) {
+			this.carte[x][y] = "0";
+		}
 	}
 
 	/**
@@ -133,6 +138,11 @@ public class Robot {
 			System.out.println("L'orientation du robot est impossible");
 			break;
 		}
+
+		// timer pour ralentir
+		long start = System.currentTimeMillis();
+		while ((System.currentTimeMillis() - start) < 500)
+			;
 	}
 
 	/**
