@@ -65,6 +65,7 @@ public class Execution {
 			}
 		}
 
+		//Affiche la map
 		for (int x = 0; x < 12; x++) {
 			System.out.println(robot.carte[x][0] + " " + robot.carte[x][1] + " " + robot.carte[x][2] + " "
 					+ robot.carte[x][3] + " " + robot.carte[x][4] + " " + robot.carte[x][5] + " " + robot.carte[x][6]
