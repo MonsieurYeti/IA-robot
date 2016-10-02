@@ -9,9 +9,13 @@ public class ThreadRobot implements Runnable {
 	int departPositionX;
 	int departPositionY;
 	Orientation orientation;
-	int premierMurX;
-	int premierMurY;
+	int premierMurX = -10;
+	int premierMurY = -10;
 
+	/*
+	 * Constructeurs
+	 */
+	
 	public ThreadRobot(Robot robot, Environnement environnement, int departPositionX, int departPositionY,
 			Orientation orientation) {
 		this.robot = robot;
@@ -19,10 +23,11 @@ public class ThreadRobot implements Runnable {
 		this.departPositionX = departPositionX;
 		this.departPositionY = departPositionY;
 		this.orientation = orientation;
-		this.premierMurX = -10;
-		this.premierMurY = -10;
 	}
 
+	/*
+	 * Thread
+	 */
 	@Override
 	public void run() {
 		robot.afficherPosition();
@@ -38,6 +43,10 @@ public class ThreadRobot implements Runnable {
 		}
 
 		while (!(cpt > 15 && robot.positionX == premierMurX && robot.positionY == premierMurY)) {
+
+			// timer pour ralentir
+			long start = System.nanoTime();
+			while ((System.nanoTime() - start) < 500000000);
 
 			// poussière et bijoux
 			if (environnement.testerBijouCase(robot)) {
@@ -62,7 +71,11 @@ public class ThreadRobot implements Runnable {
 					robot.tournerADroite();
 				}
 				robot.afficherPosition();
-				cpt++;
+
+				// Compteur pour s'arrêter après la découverte du contour,
+				// mettre en commentaire sinon
+				// cpt++;
+
 			} else {
 				if (environnement.testerCaseSuivante(robot)) {
 					robot.avancer();
