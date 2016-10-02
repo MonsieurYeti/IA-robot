@@ -17,9 +17,12 @@ public class Execution {
 		Environnement environnement = new Environnement();
 		Robot robot;
 
-		int departPositionX = 2;
-		int departPositionY = 2;
+		int departPositionX = 0;
+		int departPositionY = 1;
 		Orientation orientation = Orientation.N;
+
+		int premierMurX = -10;
+		int premierMurY = -10;
 
 		if (environnement.testerCasePossible(departPositionX, departPositionY)) {
 			robot = new Robot(departPositionX, departPositionY, orientation);
@@ -30,8 +33,9 @@ public class Execution {
 		}
 
 		robot.afficherPosition();
+		int cpt = 0; //compteur pour ne pas s'arrêter de suite lors de la découverte
 
-		while (!(robot.positionX == departPositionX && robot.positionY == departPositionY && robot.murTouche)) {
+		while (!(cpt > 15 && robot.positionX == premierMurX && robot.positionY == premierMurY)) {
 
 			if (robot.murTouche) {
 
@@ -46,6 +50,7 @@ public class Execution {
 					robot.tournerADroite();
 				}
 				robot.afficherPosition();
+				cpt++;
 			} else {
 				if (environnement.testerCaseSuivante(robot)) {
 					robot.avancer();
@@ -53,6 +58,8 @@ public class Execution {
 				} else {
 					robot.tournerADroite();
 					robot.murTouche = true;
+					premierMurX = robot.positionX;
+					premierMurY = robot.positionY;
 				}
 				robot.afficherPosition();
 			}
