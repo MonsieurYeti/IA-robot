@@ -50,8 +50,18 @@ public class Robot {
 	/**
 	 * Ajoute la case courante comme case possible dans la carte
 	 */
-	public void ajouterCaseValideCarte() {
+	public void ajouterCaseActuelleValideCarte() {
 		this.carte[this.positionX][this.positionY] = true;
+	}
+
+	/**
+	 * Ajoute la case courante comme case impossible dans la carte
+	 * 
+	 * @param x
+	 * @param y
+	 */
+	public void ajouterCaseInvalideCarte(int x, int y) {
+		this.carte[x][y] = false;
 	}
 
 	/**

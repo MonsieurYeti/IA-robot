@@ -36,7 +36,7 @@ public class ThreadRobot implements Runnable {
 		int cpt = 0;
 
 		if (environnement.testerCasePossible(departPositionX, departPositionY)) {
-			robot.ajouterCaseValideCarte();
+			robot.ajouterCaseActuelleValideCarte();
 		} else {
 			System.out.println("Position ou orientation de départ impossible");
 			return;
@@ -62,7 +62,7 @@ public class ThreadRobot implements Runnable {
 
 				if (environnement.testerCaseSuivante(robot)) {
 					robot.avancer();
-					robot.ajouterCaseValideCarte();
+					robot.ajouterCaseActuelleValideCarte();
 
 					// timer pour ralentir
 					long start = System.currentTimeMillis();
@@ -80,7 +80,7 @@ public class ThreadRobot implements Runnable {
 			} else {
 				if (environnement.testerCaseSuivante(robot)) {
 					robot.avancer();
-					robot.ajouterCaseValideCarte();
+					robot.ajouterCaseActuelleValideCarte();
 
 					// timer pour ralentir
 					long start = System.currentTimeMillis();
