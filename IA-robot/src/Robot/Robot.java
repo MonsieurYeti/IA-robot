@@ -9,6 +9,8 @@ public class Robot {
 	public int positionX;
 	public int positionY;
 
+	public boolean[][] carte = new boolean[12][12];
+
 	/*
 	 * Constructeurs
 	 */
@@ -65,4 +67,17 @@ public class Robot {
 		this.positionY--;
 	}
 
+	/**
+	 * Ajoute la case courante comme case possible dans la carte
+	 */
+	public void ajouterCaseValideCarte() {
+		this.carte[this.positionX][this.positionY] = true;
+	}
+
+	/**
+	 * Ajoute la case courante comme case impossible dans la carte
+	 */
+	public void ajouterCaseImpossibleCarte(int x, int y) {
+		this.carte[x][y] = false;
+	}
 }
