@@ -47,8 +47,8 @@ public class Environnement {
 	 * @param y
 	 * @return true si il y a de la poussière, false sinon
 	 */
-	public boolean testerPoussiereCase(int x, int y) {
-		if (cases[x][y].poussiere) {
+	public boolean testerPoussiereCase(Robot robot) {
+		if (cases[robot.positionX][robot.positionY].poussiere) {
 			return true;
 		} else {
 			return false;
@@ -62,8 +62,8 @@ public class Environnement {
 	 * @param y
 	 * @return true si il y a un bijou, false sinon
 	 */
-	public boolean testerBijouCase(int x, int y) {
-		if (cases[x][y].bijou) {
+	public boolean testerBijouCase(Robot robot) {
+		if (cases[robot.positionX][robot.positionY].bijou) {
 			return true;
 		} else {
 			return false;
@@ -145,6 +145,16 @@ public class Environnement {
 	public void ajouterPoussiere(int x, int y) {
 		cases[x][y].poussiere = true;
 	}
+	
+	/**
+	 * Enlève la poussière à la case voulue
+	 * 
+	 * @param x
+	 * @param y
+	 */
+	public void aspirerPoussiere(int x, int y) {
+		cases[x][y].poussiere = false;
+	}
 
 	/**
 	 * Ajoute un bijou à la case voulue
@@ -154,6 +164,16 @@ public class Environnement {
 	 */
 	public void ajouterBijou(int x, int y) {
 		cases[x][y].bijou = true;
+	}
+	
+	/**
+	 * Enlève un bijou à la case voulue
+	 * 
+	 * @param x
+	 * @param y
+	 */
+	public void enleverBijou(int x, int y) {
+		cases[x][y].bijou = false;
 	}
 
 	/**

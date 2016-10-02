@@ -37,6 +37,16 @@ public class Execution {
 
 		while (!(cpt > 15 && robot.positionX == premierMurX && robot.positionY == premierMurY)) {
 
+			//poussière et bijoux
+			if(environnement.testerBijouCase(robot)) {
+				robot.ramasserBijou(environnement);
+			}
+			
+			if(environnement.testerPoussiereCase(robot)) {
+				robot.aspirerPoussiere(environnement);
+			}
+			
+			//déclacements
 			if (robot.murTouche) {
 
 				if (environnement.testerCaseAGauche(robot)) {

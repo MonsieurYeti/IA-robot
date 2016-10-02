@@ -1,5 +1,7 @@
 package robot;
 
+import environnement.Environnement;
+
 /**
  * @author ggaillard
  *
@@ -10,6 +12,8 @@ public class Robot {
 	public int positionY;
 	public Orientation orientation;
 	public boolean murTouche = false;
+	public int compteurBijoux = 0;
+	public int compteurElectricite = 0;
 
 	public boolean[][] carte = new boolean[12][12];
 
@@ -97,6 +101,8 @@ public class Robot {
 	 * Fait avancer le robot d'une case suivant sa position
 	 */
 	public void avancer() {
+		compteurElectricite++;
+		
 		switch (orientation) {
 		case N:
 			this.positionY--;
@@ -113,7 +119,24 @@ public class Robot {
 		default:
 			System.out.println("L'orientation du robot est impossible");
 			break;
-		
 		}
+	}
+	
+	/**
+	 * Ramasse le bijou présent s'il y en a un
+	 * @param environnement
+	 */
+	public void ramasserBijou(Environnement environnement) {
+		compteurElectricite++;
+		environnement.enleverBijou(this.positionX, this.positionY);
+	}
+	
+	/**
+	 * Ramasse le bijou présent s'il y en a un
+	 * @param environnement
+	 */
+	public void aspirerPoussiere(Environnement environnement) {
+		compteurElectricite++;
+		environnement.aspirerPoussiere(this.positionX, this.positionY);
 	}
 }
