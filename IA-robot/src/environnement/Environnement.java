@@ -142,7 +142,7 @@ public class Environnement {
 	 * @param x
 	 * @param y
 	 */
-	public void ajouterPoussiere(int x, int y) {
+	public synchronized void ajouterPoussiere(int x, int y) {
 		cases[x][y].poussiere = true;
 	}
 	
@@ -152,7 +152,7 @@ public class Environnement {
 	 * @param x
 	 * @param y
 	 */
-	public void aspirerPoussiere(int x, int y) {
+	public synchronized void aspirerPoussiere(int x, int y) {
 		cases[x][y].poussiere = false;
 	}
 
@@ -162,7 +162,7 @@ public class Environnement {
 	 * @param x
 	 * @param y
 	 */
-	public void ajouterBijou(int x, int y) {
+	public synchronized void ajouterBijou(int x, int y) {
 		cases[x][y].bijou = true;
 	}
 	
@@ -172,7 +172,7 @@ public class Environnement {
 	 * @param x
 	 * @param y
 	 */
-	public void enleverBijou(int x, int y) {
+	public synchronized void enleverBijou(int x, int y) {
 		cases[x][y].bijou = false;
 	}
 

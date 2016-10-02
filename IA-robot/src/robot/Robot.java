@@ -21,13 +21,16 @@ public class Robot {
 	 * Constructeurs
 	 */
 
+	public Robot() {
+	}
+
 	public Robot(int x, int y, Orientation orientation) {
 		this.positionX = x;
 		this.positionY = y;
 		this.orientation = orientation;
-		
-		for (x=0;x<12;x++) {
-			for (y=0;y<12;y++) {
+
+		for (x = 0; x < 12; x++) {
+			for (y = 0; y < 12; y++) {
 				carte[x][y] = false;
 			}
 		}
@@ -43,7 +46,7 @@ public class Robot {
 	public void afficherPosition() {
 		System.out.println("X : " + this.positionX + ", Y : " + this.positionY);
 	}
-	
+
 	/**
 	 * Ajoute la case courante comme case possible dans la carte
 	 */
@@ -102,7 +105,7 @@ public class Robot {
 	 */
 	public void avancer() {
 		compteurElectricite++;
-		
+
 		switch (orientation) {
 		case N:
 			this.positionY--;
@@ -121,18 +124,20 @@ public class Robot {
 			break;
 		}
 	}
-	
+
 	/**
 	 * Ramasse le bijou présent s'il y en a un
+	 * 
 	 * @param environnement
 	 */
 	public void ramasserBijou(Environnement environnement) {
 		compteurElectricite++;
 		environnement.enleverBijou(this.positionX, this.positionY);
 	}
-	
+
 	/**
 	 * Ramasse le bijou présent s'il y en a un
+	 * 
 	 * @param environnement
 	 */
 	public void aspirerPoussiere(Environnement environnement) {
