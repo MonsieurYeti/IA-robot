@@ -15,7 +15,7 @@ public class ThreadRobot implements Runnable {
 	/*
 	 * Constructeurs
 	 */
-
+	
 	public ThreadRobot(Robot robot, Environnement environnement, int departPositionX, int departPositionY,
 			Orientation orientation) {
 		this.robot = robot;
@@ -45,9 +45,8 @@ public class ThreadRobot implements Runnable {
 		while (!(cpt > 15 && robot.positionX == premierMurX && robot.positionY == premierMurY)) {
 
 			// timer pour ralentir
-			long start = System.nanoTime();
-			while ((System.nanoTime() - start) < 500000000)
-				;
+			long start = System.currentTimeMillis();
+			while ((System.currentTimeMillis() - start) < 500);
 
 			// poussière et bijoux
 			if (environnement.testerBijouCase(robot)) {
