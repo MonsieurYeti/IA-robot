@@ -1,6 +1,7 @@
 package robot;
 
 import environnement.Environnement;
+import environnement.ThreadEnvironnement;
 
 /**
  * @author ggaillard
@@ -21,9 +22,12 @@ public class Execution {
 		// Création des threads
 		Thread threadRobot = new Thread(
 				new ThreadRobot(robot, environnement, departPositionX, departPositionY, orientation));
+		Thread threadEnvironnement = new Thread(new ThreadEnvironnement(environnement));
+
 
 		// Démarrage des threads
 		threadRobot.start();
+		threadEnvironnement.start();
 
 		// Tant que les threads sont en cours on attend
 		while (threadRobot.isAlive())

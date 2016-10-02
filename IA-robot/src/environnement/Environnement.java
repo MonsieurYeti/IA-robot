@@ -1,5 +1,7 @@
 package environnement;
 
+import java.util.Random;
+
 import robot.Robot;
 
 /**
@@ -137,6 +139,24 @@ public class Environnement {
 	}
 
 	/**
+	 * Permet de générer un integer dans un scope min/max
+	 * 
+	 * @param min
+	 * @param max
+	 * @return valeur aléatoire générée
+	 */
+	public int randomInteger(int min, int max) {
+
+		Random rand = new Random();
+
+		// nextInt excludes the top value so we have to add 1 to include the top
+		// value
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+
+		return randomNum;
+	}
+
+	/**
 	 * Ajoute de la poussière à la case voulue
 	 * 
 	 * @param x
@@ -145,7 +165,7 @@ public class Environnement {
 	public synchronized void ajouterPoussiere(int x, int y) {
 		cases[x][y].poussiere = true;
 	}
-	
+
 	/**
 	 * Enlève la poussière à la case voulue
 	 * 
@@ -165,7 +185,7 @@ public class Environnement {
 	public synchronized void ajouterBijou(int x, int y) {
 		cases[x][y].bijou = true;
 	}
-	
+
 	/**
 	 * Enlève un bijou à la case voulue
 	 * 

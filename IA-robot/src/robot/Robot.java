@@ -133,6 +133,7 @@ public class Robot {
 	public void ramasserBijou(Environnement environnement) {
 		compteurElectricite++;
 		environnement.enleverBijou(this.positionX, this.positionY);
+		System.out.println("Bijou ramassé en " + this.positionX + "  " + this.positionY);
 	}
 
 	/**
@@ -143,5 +144,6 @@ public class Robot {
 	public void aspirerPoussiere(Environnement environnement) {
 		compteurElectricite++;
 		environnement.aspirerPoussiere(this.positionX, this.positionY);
+		System.out.println("Poussiere ramassée en " + this.positionX + "  " + this.positionY);
 	}
 }
