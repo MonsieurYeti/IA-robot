@@ -13,6 +13,8 @@ public class Cellule extends JPanel {
 	 */
 	private int positionX;
 	private int positionY;
+	private int positionAbsolueX;
+	private int positionAbsolueY;
 	private boolean diamons;
 	private boolean dirt;
 	
@@ -21,9 +23,11 @@ public class Cellule extends JPanel {
 	private static final long serialVersionUID = 2L;
 
 	public void drawCelule(Graphics g,int i, int j, int taille){
-		g.drawRect(200+(50*i),300+(50*j) ,taille,taille);
-		this.centreX=200+(50*i)+taille/2;
-		this.centreY=300+(50*j)+taille/2;
+		this.positionAbsolueX=100+(50*i);
+		this.positionAbsolueY=150+(50*j);
+		g.drawRect(positionAbsolueX,positionAbsolueY,taille,taille);
+		this.centreX=100+(50*i)+taille/2;
+		this.centreY=150+(50*j)+taille/2;
 	}
 	
 	public void drawnCentre(Graphics g){
@@ -51,6 +55,14 @@ public class Cellule extends JPanel {
 	
 	public int getPositionY(){
 		return positionY;
+	}
+	
+	public int getPositionAbsolueX(){
+		return positionAbsolueX;
+	}
+	
+	public int getPositionAbsolueY(){
+		return positionAbsolueY;
 	}
 	
 	public void setDiamons(boolean d){

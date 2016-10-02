@@ -1,6 +1,8 @@
 package graphique;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 
@@ -12,14 +14,26 @@ public class Grid extends JPanel {
 	
 	private Cellule[][] cell = new Cellule[3][3];
 	private static final long serialVersionUID = 1L;
+	
+	private BufferedImage image;
 
+	//==================================================================
+	/**
+	 * Definition de l'image du robit
+	 */
+	ImageRobot imgrobot = new ImageRobot();
+	
+	//==================================================================
+	
 	public void paintComponent(Graphics g){
-	    g.fillRect(65, 65, 30, 40);
-	    int x2[] = {50, 60, 80, 90, 90, 80, 60, 50};
-	    int y2[] = {60, 50, 50, 60, 80, 90, 90, 80};
-	    g.fillPolygon(x2, y2, 8);
+		//Génération matrice
 	    matrice(g);
+	    //Test sur une cellule donnée
 	    getCellMatice(1,0);
+	    //Création du robot
+	    imgrobot.drawRobot(g, cell[1][1].getPositionAbsolueX(), cell[1][1].getPositionAbsolueY());
+	    imgrobot.drawDirt(g, cell[1][0].getPositionAbsolueX(), cell[1][0].getPositionAbsolueY());
+	    imgrobot.drawDiamons(g, cell[1][0].getPositionAbsolueX(), cell[1][0].getPositionAbsolueY());
 	}
 	
 	public void matrice(Graphics g){
@@ -30,6 +44,7 @@ public class Grid extends JPanel {
 				this.cell[i][j].Position(i,j);
 				this.cell[i][j].drawCelule(g,i,j,50);
 				this.cell[i][j].drawnCentre(g);
+				
 				//g.drawRect(200+(50*i),300+(50*j) ,50,50);
 			}
 		}
