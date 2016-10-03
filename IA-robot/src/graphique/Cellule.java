@@ -11,23 +11,35 @@ public class Cellule extends JPanel {
 	/**
 	 * 
 	 */
-	private int positionX;
-	private int positionY;
-	private int positionAbsolueX;
-	private int positionAbsolueY;
-	private boolean diamons;
-	private boolean dirt;
+	protected int positionX;
+	protected int positionY;
+	protected int positionAbsolueX;
+	protected int positionAbsolueY;
+	protected boolean diamons;
+	protected boolean dirt;
+	protected int taille;
+	protected int hauteurFenetre;
+	protected int largueurFenetre;
 	
 	private int centreX,centreY;
 	
 	private static final long serialVersionUID = 2L;
+	
+	public Cellule (int largueur, int hauteur, int taille){
+		this.hauteurFenetre = hauteur;
+		this.largueurFenetre=largueur;
+		this.taille=taille;
+	}
 
-	public void drawCelule(Graphics g,int i, int j, int taille){
-		this.positionAbsolueX=100+(50*i);
-		this.positionAbsolueY=150+(50*j);
+	public void drawCelule(Graphics g,int i, int j){
+		
+		this.positionAbsolueX=largueurFenetre+(taille*i);
+		this.positionAbsolueY=hauteurFenetre+(taille*j);
 		g.drawRect(positionAbsolueX,positionAbsolueY,taille,taille);
-		this.centreX=100+(50*i)+taille/2;
-		this.centreY=150+(50*j)+taille/2;
+		this.centreX=largueurFenetre+(taille*i)+taille/2;
+		this.centreY=hauteurFenetre+(taille*j)+taille/2;
+		
+		
 	}
 	
 	public void drawnCentre(Graphics g){
@@ -81,5 +93,8 @@ public class Cellule extends JPanel {
 		return dirt;
 	}
 	
+	public int getTaille(){
+		return taille;
+	}
 	      
 }

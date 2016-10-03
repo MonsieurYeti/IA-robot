@@ -14,42 +14,66 @@ public class Grid extends JPanel {
 	
 	private Cellule[][] cell = new Cellule[3][3];
 	private static final long serialVersionUID = 1L;
+	public int tailleCellule;
+	public ImageRobot imgrobot; 
+	private int cpt =0;
 	
-	private BufferedImage image;
+	public Grid(int taille){
+		this.tailleCellule=taille;
+		imgrobot = new ImageRobot(tailleCellule);
+	}
 
 	//==================================================================
 	/**
-	 * Definition de l'image du robit
+	 * Definition de l'image du robot
 	 */
-	ImageRobot imgrobot = new ImageRobot();
+	
+	
 	
 	//==================================================================
 	
 	public void paintComponent(Graphics g){
 		//Génération matrice
 	    matrice(g);
+	    System.out.println(tailleCellule);
 	    //Test sur une cellule donnée
 	    getCellMatice(1,0);
 	    //Création du robot
 	    imgrobot.drawRobot(g, cell[1][1].getPositionAbsolueX(), cell[1][1].getPositionAbsolueY());
-	    imgrobot.drawDirt(g, cell[1][0].getPositionAbsolueX(), cell[1][0].getPositionAbsolueY());
-	    imgrobot.drawDiamons(g, cell[1][0].getPositionAbsolueX(), cell[1][0].getPositionAbsolueY());
+	    
+	    
+	    
+	    //Test
+	    addDiamons(g,2,0);
+	    addDirt(g,1,0);
+	    getCellMatice(1,0);
+	    getCellMatice(2,0);
+	    removeAll(g,1,0);
+	    getCellMatice(1,0);
+	    
+	    if(cpt<100){
+	    	moveRobot(g,cpt);
+	    	long start = System.currentTimeMillis();
+	    	while ((System.currentTimeMillis() - start) < 50);
+	    	cpt++;	    	
+	    }
+	    
 	}
 	
 	public void matrice(Graphics g){
 		for (int i=0;i<3;i++){
 			for(int j=0;j<3;j++){
 				
-				this.cell[i][j]=new Cellule();
+				//Nouvelle instance d'une celule
+				this.cell[i][j]=new Cellule(this.getWidth()/8,(this.getHeight()-tailleCellule)/2,tailleCellule);
+				//Definit la position
 				this.cell[i][j].Position(i,j);
-				this.cell[i][j].drawCelule(g,i,j,50);
+				//La dessine 
+				this.cell[i][j].drawCelule(g,i,j);
+				//Affiche le centre de la cell au cas ou...
 				this.cell[i][j].drawnCentre(g);
-				
-				//g.drawRect(200+(50*i),300+(50*j) ,50,50);
 			}
 		}
-		//Test validé
-		//this.cell[1][2].drawnCentre(g);
 	}
 	
 	public void getCellMatice(int i,int j){
@@ -57,6 +81,27 @@ public class Grid extends JPanel {
 		System.out.println("Position y: "+cell[i][j].getPositionY());
 		System.out.println("Saleté ?: "+cell[i][j].getDirt());
 		System.out.println("Diamons ?: "+cell[i][j].getDiamons());
+	}
+	
+	public void addDiamons(Graphics g,int x,int y){
+		imgrobot.drawDiamons(g, cell[x][y].getPositionAbsolueX(), cell[x][y].getPositionAbsolueY());
+	    cell[x][y].setDiamons(true);
+	}
+	public void addDirt(Graphics g,int x,int y){
+		imgrobot.drawDirt(g, cell[x][y].getPositionAbsolueX(), cell[x][y].getPositionAbsolueY());
+	    cell[x][y].setDiamons(true);
+	}
+	
+	public void removeAll(Graphics g,int x,int y){
+		imgrobot.unDraw(g,cell[x][y].getPositionAbsolueX(), cell[x][y].getPositionAbsolueY(),cell[x][y].getTaille());
+	    cell[x][y].setDiamons(false);
+	    cell[x][y].setDirt(false);
+	}
+	
+	public void moveRobot(Graphics g,int i){
+		
+		imgrobot.drawRobot(g, cell[0][0].getPositionAbsolueX()+i, cell[0][0].getPositionAbsolueY());
+		
 	}
 	      
 }

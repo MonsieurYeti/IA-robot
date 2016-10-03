@@ -15,6 +15,11 @@ import javax.imageio.ImageIO;
 public class ImageRobot {
 	
 	public BufferedImage image;
+	private double tailleCellule;
+	
+	ImageRobot(double taille){
+		this.tailleCellule=taille;
+	}
 	
 	public void ImagePanel(String name,double d) throws IOException {
 		//irobot.png
@@ -27,9 +32,10 @@ public class ImageRobot {
 	
 	
 	
-	public static BufferedImage scale(BufferedImage bImage, double factor) {
-        int destWidth=(int) (bImage.getWidth() * factor);
-        int destHeight=(int) (bImage.getHeight() * factor);
+	public static BufferedImage scale(BufferedImage bImage, double d) {
+        //int destWidth=(int) (bImage.getWidth() * factor);
+		int destWidth=(int) (d);
+        int destHeight=(int) (d);
         //créer l'image de destination
         GraphicsConfiguration configuration = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
         BufferedImage bImageNew = configuration.createCompatibleImage(destWidth, destHeight);
@@ -46,18 +52,19 @@ public class ImageRobot {
 	public void drawRobot(Graphics g,int x, int y){
 		//Chargement image du robot
 	    try {
-			ImagePanel("irobot.png",0.43);
+			ImagePanel("irobot.png",tailleCellule);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		g.drawImage(image,x,y, null);
+		
 	  }
 	
 	public void drawDirt(Graphics g,int x, int y){
 		//Chargement image du robot
 	    try {
-			ImagePanel("saleté.jpeg",0.229);
+			ImagePanel("saleté.jpeg",tailleCellule);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -68,12 +75,18 @@ public class ImageRobot {
 	public void drawDiamons(Graphics g,int x, int y){
 		//Chargement image du robot
 	    try {
-			ImagePanel("Diamond.png",0.2);
+			ImagePanel("Diamond.png",tailleCellule/5);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		g.drawImage(image,x,y, null);
+	  }
+	
+	
+	public void unDraw(Graphics g,int x, int y,int taille){
+		g.setColor(Color.white);
+		g.fillRect(x, y, taille, taille);
 	  }
 
 }

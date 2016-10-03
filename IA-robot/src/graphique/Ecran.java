@@ -10,11 +10,10 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame; 
 import javax.swing.JPanel; 
  
-public class Ecran 
-extends JFrame 
-{
+public class Ecran extends JFrame {
+	
 	ConsoleLog lg; 
-	private Grid grille = new Grid();
+	private Grid grille = new Grid(60);
 	// création du conteneur intermédiaire 
 	private JPanel containeur = new JPanel(); 
 	// création boutons 
@@ -22,15 +21,17 @@ extends JFrame
 	
      public Ecran() 
      { 
-          setTitle("I.A Robotor by Gaillar_Audegon_Maillot"); 
+          setTitle("I.A Robotor by Gaillard_Audegon_Maillot"); 
           setBounds(0,0,800,500); 
           setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); 
           setContentPane(grille);
           
+          setBackground(Color.WHITE);   
+          
           
           // ajout des boutons sur le conteneur intermédiaire 
           containeur.add(b1); 
-          
+          containeur.setBackground(Color.WHITE);   
           //containeur.add(grille);
           // ajout du conteneur sur le ContentPane 
           getContentPane().add(containeur); 
@@ -41,6 +42,13 @@ extends JFrame
           // comme écouteur d’événement pour la fenêtre 
           addWindowListener(ef); 
           
+          
+          
+          
+          
+          /**
+           * Activation du log sur console
+           */
           JCheckBox chkLog; 
           chkLog=new JCheckBox("log sur console"); 
           // ajout d’un écouteur à la case à cocher 
