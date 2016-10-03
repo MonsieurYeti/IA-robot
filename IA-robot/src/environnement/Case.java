@@ -1,9 +1,5 @@
 package environnement;
 
-/**
- * @author ggaillard
- *
- */
 public class Case {
 
 	public int positionX;
@@ -24,7 +20,7 @@ public class Case {
 	}
 
 	/*
-	 * Méthodes
+	 * MÃ©thodes
 	 */
 
 }

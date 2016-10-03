@@ -5,7 +5,7 @@ public class Test {
 	    CompteEnBanque cb = new CompteEnBanque();
 
 	    Thread t = new Thread(new RunImpl(cb, "Cysboy"));
-	    Thread t2 = new Thread(new RunImpl(cb, "Zéro"));
+	    Thread t2 = new Thread(new RunImpl(cb, "ZÃ©ro"));
 	    t.start();
 	    t2.start();
 	  }

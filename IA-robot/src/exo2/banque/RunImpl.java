@@ -13,7 +13,7 @@ public class RunImpl implements Runnable {
 	    for(int i = 0; i < 50; i++){
 	      if(cb.getSolde() > 0){
 	        cb.retraitArgent(2);
-	        System.out.println("Retrait effectué par " + this.name);                       
+	        System.out.println("Retrait effectuÃ© par " + this.name);                       
 	      }                       
 	    }               
 	  } 

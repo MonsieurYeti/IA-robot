@@ -14,7 +14,7 @@ public class Environnement {
 
 	public Environnement() {
 
-		// On crée les cases de l'environnement (null : la case n'existe pas)
+		// On crÃ©e les cases de l'environnement (null : la case n'existe pas)
 		cases[0][0] = new Case(0, 0);
 		cases[1][0] = new Case(0, 1);
 		cases[2][0] = new Case(0, 2);
@@ -35,15 +35,15 @@ public class Environnement {
 	}
 
 	/*
-	 * Méthodes
+	 * MÃ©thodes
 	 */
 
 	/**
-	 * Teste s'il y a de la poussière sur la case demandée
+	 * Teste s'il y a de la poussiÃ¨re sur la case demandÃ©e
 	 * 
 	 * @param x
 	 * @param y
-	 * @return true si il y a de la poussière, false sinon
+	 * @return true si il y a de la poussiÃ¨re, false sinon
 	 */
 	public boolean testerPoussiereCase(Robot robot) {
 		if (cases[robot.positionX][robot.positionY].poussiere) {
@@ -54,7 +54,7 @@ public class Environnement {
 	}
 
 	/**
-	 * Teste s'il y a u bijou sur la case demandée
+	 * Teste s'il y a u bijou sur la case demandÃ©e
 	 * 
 	 * @param x
 	 * @param y
@@ -69,7 +69,7 @@ public class Environnement {
 	}
 
 	/**
-	 * Teste si la case demandée existe
+	 * Teste si la case demandÃ©e existe
 	 * 
 	 * @param robot
 	 * @return true si la case existe, false sinon
@@ -91,7 +91,7 @@ public class Environnement {
 	}
 
 	/**
-	 * Teste si la case demandée existe
+	 * Teste si la case demandÃ©e existe
 	 * 
 	 * @param robot
 	 * @return true si la case existe, false sinon
@@ -113,7 +113,7 @@ public class Environnement {
 	}
 
 	/**
-	 * Teste si la case demandée existe
+	 * Teste si la case demandÃ©e existe
 	 * 
 	 * @param robot
 	 * @return true si la case existe, false sinon
@@ -135,11 +135,11 @@ public class Environnement {
 	}
 
 	/**
-	 * Permet de générer un integer dans un scope min/max
+	 * Permet de gÃ©nÃ©rer un integer dans un scope min/max
 	 * 
 	 * @param min
 	 * @param max
-	 * @return valeur aléatoire générée
+	 * @return valeur alÃ©atoire gÃ©nÃ©rÃ©e
 	 */
 	public int randomInteger(int min, int max) {
 
@@ -153,7 +153,7 @@ public class Environnement {
 	}
 
 	/**
-	 * Ajoute de la poussière à la case voulue
+	 * Ajoute de la poussiÃ¨re Ã  la case voulue
 	 * 
 	 * @param x
 	 * @param y
@@ -163,7 +163,7 @@ public class Environnement {
 	}
 
 	/**
-	 * Enlève la poussière à la case voulue
+	 * EnlÃ¨ve la poussiÃ¨re Ã  la case voulue
 	 * 
 	 * @param x
 	 * @param y
@@ -173,7 +173,7 @@ public class Environnement {
 	}
 
 	/**
-	 * Ajoute un bijou à la case voulue
+	 * Ajoute un bijou Ã  la case voulue
 	 * 
 	 * @param x
 	 * @param y
@@ -183,7 +183,7 @@ public class Environnement {
 	}
 
 	/**
-	 * Enlève un bijou à la case voulue
+	 * EnlÃ¨ve un bijou Ã  la case voulue
 	 * 
 	 * @param x
 	 * @param y
@@ -193,11 +193,11 @@ public class Environnement {
 	}
 
 	/**
-	 * Teste si la case passée en paramètre est possible
+	 * Teste si la case passÃ©e en paramÃ¨tre est possible
 	 * 
 	 * @param x
 	 * @param y
-	 * @return true si la case demandée est possible, false sinon
+	 * @return true si la case demandÃ©e est possible, false sinon
 	 */
 	public boolean testerCasePossible(int x, int y) {
 		if (x < 0 || x > 4 || y < 0 || y > 2) {

@@ -37,7 +37,7 @@ public class Robot {
 	}
 
 	/*
-	 * Méthodes
+	 * MÃ©thodes
 	 */
 
 	/**
@@ -154,29 +154,29 @@ public class Robot {
 	}
 
 	/**
-	 * Ramasse le bijou présent s'il y en a un
+	 * Ramasse le bijou prÃ©sent s'il y en a un
 	 * 
 	 * @param environnement
 	 */
 	public void ramasserBijou(Environnement environnement) {
 		compteurElectricite++;
 		environnement.enleverBijou(this.positionX, this.positionY);
-		System.out.println("Bijou ramassé en " + this.positionX + "  " + this.positionY);
+		System.out.println("Bijou ramassÃ© en " + this.positionX + "  " + this.positionY);
 	}
 
 	/**
-	 * Ramasse le bijou présent s'il y en a un
+	 * Ramasse le bijou prÃ©sent s'il y en a un
 	 * 
 	 * @param environnement
 	 */
 	public void aspirerPoussiere(Environnement environnement) {
 		compteurElectricite++;
 		environnement.aspirerPoussiere(this.positionX, this.positionY);
-		System.out.println("Poussiere ramassée en " + this.positionX + "  " + this.positionY);
+		System.out.println("Poussiere ramassÃ©e en " + this.positionX + "  " + this.positionY);
 	}
 
 	/**
-	 * Teste si le terrain est découvert complètement
+	 * Teste si le terrain est dÃ©couvert complÃ¨tement
 	 * 
 	 * @return null si le terrain est complet, la coordonne manquante sinon
 	 */
@@ -184,7 +184,7 @@ public class Robot {
 		// Pour chaque case
 		for (int y = 0; y < tailleTableauY; y++) {
 			for (int x = 0; x < tailleTableauX; x++) {
-				// On regarde si la case peut être découverte mais ne l'est pas
+				// On regarde si la case peut Ãªtre dÃ©couverte mais ne l'est pas
 				if (testerCasePossibleCarte(x, y) && carte[x][y] == "X") {
 					if (testerCasePossibleCarte(x + 1, y) && carte[x + 1][y] == "1") {
 						if (testerCasePossibleCarte(x - 1, y) && carte[x - 1][y] == "1") {

@@ -38,24 +38,24 @@ public class ThreadRobot implements Runnable {
 	public void run() {
 		robot.afficherPosition();
 
-		// compteur pour ne pas s'arrêter de suite lors de la découverte
+		// Compteur pour ne pas s'arrÃªter de suite lors de la dÃ©couverte
 		int cpt = 0;
 
 		if (environnement.testerCasePossible(departPositionX, departPositionY)) {
 			robot.ajouterCaseActuelleValideCarte();
 		} else {
-			System.out.println("Position ou orientation de départ impossible");
+			System.out.println("Position ou orientation de dÃ©part impossible");
 			return;
 		}
 
 		while (!threadFini) {
 
-			// On vérifie ce qu'il y a sur la case et on le ramasse s'il y en a
+			// On vÃ©rifie ce qu'il y a sur la case et on le ramasse s'il y en a
 			analyseCase();
 
-			// Découverte du terrain
+			// DÃ©couverte du terrain
 			if (parcoursContour && !(cpt > 15 && robot.positionX == premierMurX && robot.positionY == premierMurY)) {
-				// Découverte de la bordure
+				// DÃ©couverte de la bordure
 				cpt = decouverteBordure(cpt);
 			} else {
 
@@ -78,7 +78,7 @@ public class ThreadRobot implements Runnable {
 	}
 
 	/**
-	 * Complète la recherche du terrain avec les cases centrales manquantes
+	 * ComplÃ¨te la recherche du terrain avec les cases centrales manquantes
 	 */
 	private void completionTerrain(Coordonnees coordonneeManquante) {
 		while (robot.positionX != coordonneeManquante.coordonneeX
@@ -122,7 +122,7 @@ public class ThreadRobot implements Runnable {
 	}
 
 	/*
-	 * Méthodes privées
+	 * MÃ©thodes privÃ©es
 	 */
 
 	/**
@@ -139,10 +139,10 @@ public class ThreadRobot implements Runnable {
 	}
 
 	/**
-	 * Analyse la case et récolte bijoux et poussière si besoin
+	 * Analyse la case et rÃ©colte bijoux et poussiÃ¨re si besoin
 	 */
 	private void analyseCase() {
-		// poussière et bijoux
+		// poussiÃ¨re et bijoux
 		if (environnement.testerBijouCase(robot)) {
 			robot.ramasserBijou(environnement);
 		}
@@ -153,19 +153,19 @@ public class ThreadRobot implements Runnable {
 	}
 
 	/**
-	 * Découverte de la bordure du terrain Le compteur sert pour arrêter la
-	 * découvert de la bordure
+	 * DÃ©couverte de la bordure du terrain Le compteur sert pour arrÃªter la
+	 * dÃ©couvert de la bordure
 	 * 
 	 * @param cpt
-	 * @return le compteur à réinjecté
+	 * @return le compteur Ã  rÃ©injecter
 	 */
 	private int decouverteBordure(int cpt) {
-		// Découverte de la bordure du terrain
+		// DÃ©couverte de la bordure du terrain
 		if (robot.murTouche) {
 			testerAGauche();
 			testerCaseSuivante();
 
-			// Compteur pour s'arrêter après la découverte du contour,
+			// Compteur pour s'arrÃªter aprÃ¨s la dÃ©couverte du contour,
 			// mettre en commentaire sinon
 			cpt++;
 		} else {
@@ -191,7 +191,7 @@ public class ThreadRobot implements Runnable {
 	}
 
 	/**
-	 * Teste la case suivante et avance après la rencontre du premier mur
+	 * Teste la case suivante et avance aprÃ¨s la rencontre du premier mur
 	 */
 	private void testerCaseSuivante() {
 		if (environnement.testerCaseSuivante(robot)) {
@@ -204,7 +204,7 @@ public class ThreadRobot implements Runnable {
 	}
 
 	/**
-	 * Teste la case à gauche pour la découverte des bords
+	 * Teste la case Ã  gauche pour la dÃ©couverte des bords
 	 */
 	private void testerAGauche() {
 		if (environnement.testerCaseAGauche(robot)) {

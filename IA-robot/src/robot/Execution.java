@@ -14,13 +14,13 @@ public class Execution {
 
 		Environnement environnement = new Environnement();
 		Robot robot = new Robot(departPositionX, departPositionY, orientation);
-		// Le timer est dans la méthode "avancer" du robot, en millisecondes
+		// Le timer est dans la mÃ©thode "avancer" du robot, en millisecondes
 
-		// Création des threads
+		// CrÃ©ation des threads
 		Thread threadRobot = new Thread(new ThreadRobot(robot, environnement));
 		Thread threadEnvironnement = new Thread(new ThreadEnvironnement(environnement));
 
-		// Démarrage des threads
+		// DÃ©marrage des threads
 		threadRobot.start();
 		
 		// threadEnvironnement.start();
