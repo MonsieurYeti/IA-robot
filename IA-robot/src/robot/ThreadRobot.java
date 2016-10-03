@@ -13,7 +13,10 @@ public class ThreadRobot implements Runnable {
 	int premierMurX = -10;
 	int premierMurY = -10;
 	Coordonnees coordonneeManquante = null;
-	
+	int directionRecherche = 0;
+	boolean caseARechercher = false;
+	boolean parcoursContour = true;
+
 	boolean threadFini = false;
 
 	/*
@@ -47,25 +50,75 @@ public class ThreadRobot implements Runnable {
 
 		while (!threadFini) {
 
+			// On vérifie ce qu'il y a sur la case et on le ramasse s'il y en a
 			analyseCase();
 
 			// Découverte du terrain
-			if (!(cpt > 15 && robot.positionX == premierMurX && robot.positionY == premierMurY)) {
+			if (parcoursContour && !(cpt > 15 && robot.positionX == premierMurX && robot.positionY == premierMurY)) {
 				// Découverte de la bordure
 				cpt = decouverteBordure(cpt);
 			} else {
-				// Complétion du terrain
+
 				coordonneeManquante = robot.testerTerrainComplet();
+				parcoursContour = false;
 
 				if (coordonneeManquante != null) {
 					System.out.println("Le terrain n'est pas complet, il manque la case X : "
 							+ coordonneeManquante.coordonneeX + ", Y : " + coordonneeManquante.coordonneeY);
+					completionTerrain(coordonneeManquante);
+				} else {
+					System.out.println("Le terrain est complet !");
 					threadFini = true;
+					// cpt = 0;
+					// parcoursContour = true;
 				}
 			}
-
 			// afficherCarte();
 		}
+	}
+
+	/**
+	 * Complète la recherche du terrain avec les cases centrales manquantes
+	 */
+	private void completionTerrain(Coordonnees coordonneeManquante) {
+		while (robot.positionX != coordonneeManquante.coordonneeX
+				|| robot.positionY != coordonneeManquante.coordonneeY) {
+
+			switch (directionRecherche) {
+			case 0:
+				if (robot.positionX != coordonneeManquante.coordonneeX) {
+					if (robot.positionX < coordonneeManquante.coordonneeX) {
+						robot.orientation = Orientation.E;
+					} else {
+						robot.orientation = Orientation.O;
+					}
+					caseARechercher = true;
+				}
+				// Pour alterner le sens
+				directionRecherche = 1;
+				break;
+
+			case 1:
+				if (robot.positionY != coordonneeManquante.coordonneeY) {
+					if (robot.positionY < coordonneeManquante.coordonneeY) {
+						robot.orientation = Orientation.S;
+					} else {
+						robot.orientation = Orientation.N;
+					}
+					caseARechercher = true;
+				}
+				// Pour alterner le sens
+				directionRecherche = 0;
+				break;
+			}
+
+			if (environnement.testerCaseSuivante(robot) && caseARechercher) {
+				robot.avancer();
+				robot.afficherPosition();
+				caseARechercher = false;
+			}
+		}
+		robot.ajouterCaseActuelleValideCarte();
 	}
 
 	/*
