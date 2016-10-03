@@ -18,7 +18,8 @@ public class Grid extends JPanel {
 	public ImageRobot imgrobot; 
 	private int cpt =0;
 	
-	public Grid(int taille){
+	public Grid(int taille,int refresh){
+		this.cpt=refresh;
 		this.tailleCellule=taille;
 		imgrobot = new ImageRobot(tailleCellule);
 	}
@@ -56,7 +57,11 @@ public class Grid extends JPanel {
 	    	long start = System.currentTimeMillis();
 	    	while ((System.currentTimeMillis() - start) < 50);
 	    	cpt++;	    	
+	    } else {
+	    	moveRobot(g,100);
 	    }
+
+  	  
 	    
 	}
 	

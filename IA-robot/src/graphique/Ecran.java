@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 public class Ecran extends JFrame {
 	
 	ConsoleLog lg; 
-	private Grid grille = new Grid(60);
+	private Grid grille = new Grid(60,1);
 	// création du conteneur intermédiaire 
 	private JPanel containeur = new JPanel(); 
 	// création boutons 

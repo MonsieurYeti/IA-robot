@@ -10,5 +10,8 @@ public class mainGraphique {
          fenetre=new Ecran();  
          // affichage de la fenêtre 
          fenetre.setVisible(true); 
+         while(true){
+        	 fenetre.repaint(); 
+         }
     } 
 }
