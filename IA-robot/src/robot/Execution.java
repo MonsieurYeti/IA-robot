@@ -8,9 +8,9 @@ public class Execution {
 	public static void main(String[] args) {
 
 		// On instancie le robot et l'environnement
-		int departPositionX = 0;
-		int departPositionY = 2;
-		Orientation orientation = Orientation.N;
+		int departPositionX = 2;
+		int departPositionY = 1;
+		Orientation orientation = Orientation.E;
 
 		Environnement environnement = new Environnement();
 		Robot robot = new Robot(departPositionX, departPositionY, orientation);
@@ -22,8 +22,7 @@ public class Execution {
 
 		// Démarrage des threads
 		threadRobot.start();
-		
-		// threadEnvironnement.start();
+		//threadEnvironnement.start();
 
 		// Tant que les threads sont en cours on attend
 		while (threadRobot.isAlive())

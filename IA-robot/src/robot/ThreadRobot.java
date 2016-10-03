@@ -54,7 +54,7 @@ public class ThreadRobot implements Runnable {
 			analyseCase();
 
 			// Découverte du terrain
-			if (parcoursContour && !(cpt > 15 && robot.positionX == premierMurX && robot.positionY == premierMurY)) {
+			if (parcoursContour && !(cpt > 10 && robot.positionX == premierMurX && robot.positionY == premierMurY)) {
 				// Découverte de la bordure
 				cpt = decouverteBordure(cpt);
 			} else {
@@ -69,13 +69,23 @@ public class ThreadRobot implements Runnable {
 				} else {
 					System.out.println("Le terrain est complet !");
 					threadFini = true;
+
+					// On remet à 0 pour recommencer le tour
 					// cpt = 0;
 					// parcoursContour = true;
+					// robot.murTouche = false;
+					// premierMurX = -10;
+					// premierMurY = -10;
 				}
 			}
+			// Pour le débug
 			// afficherCarte();
 		}
 	}
+
+	/*
+	 * ------------------ Méthodes privées ------------------
+	 */
 
 	/**
 	 * Complète la recherche du terrain avec les cases centrales manquantes
@@ -120,10 +130,6 @@ public class ThreadRobot implements Runnable {
 		}
 		robot.ajouterCaseActuelleValideCarte();
 	}
-
-	/*
-	 * Méthodes privées
-	 */
 
 	/**
 	 * Affiche la carte dans la console
