@@ -3,10 +3,6 @@ package robot;
 import environnement.Environnement;
 import environnement.ThreadEnvironnement;
 
-/**
- * @author ggaillard
- *
- */
 public class Execution {
 
 	public static void main(String[] args) {
@@ -26,6 +22,7 @@ public class Execution {
 
 		// Démarrage des threads
 		threadRobot.start();
+		
 		// threadEnvironnement.start();
 
 		// Tant que les threads sont en cours on attend

@@ -1,11 +1,8 @@
 package robot;
 
+import environnement.Coordonnees;
 import environnement.Environnement;
 
-/**
- * @author ggaillard
- *
- */
 public class Robot {
 
 	public int positionX;
@@ -48,6 +45,17 @@ public class Robot {
 	 */
 	public void afficherPosition() {
 		System.out.println("X : " + this.positionX + ", Y : " + this.positionY);
+	}
+
+	/**
+	 * Teste si la case est dans la carte
+	 */
+	public boolean testerCasePossibleCarte(int x, int y) {
+		if (x >= 0 && x < tailleTableauX && y >= 0 && y < tailleTableauY) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -165,5 +173,31 @@ public class Robot {
 		compteurElectricite++;
 		environnement.aspirerPoussiere(this.positionX, this.positionY);
 		System.out.println("Poussiere ramassée en " + this.positionX + "  " + this.positionY);
+	}
+
+	/**
+	 * Teste si le terrain est découvert complètement
+	 * 
+	 * @return null si le terrain est complet, la coordonne manquante sinon
+	 */
+	public Coordonnees testerTerrainComplet() {
+		// Pour chaque case
+		for (int y = 0; y < tailleTableauY; y++) {
+			for (int x = 0; x < tailleTableauX; x++) {
+				// On regarde si la case peut être découverte mais ne l'est pas
+				if (testerCasePossibleCarte(x, y) && carte[x][y] == "X") {
+					if (testerCasePossibleCarte(x + 1, y) && carte[x + 1][y] == "1") {
+						if (testerCasePossibleCarte(x - 1, y) && carte[x - 1][y] == "1") {
+							if (testerCasePossibleCarte(x, y + 1) && carte[x][y + 1] == "1") {
+								if (testerCasePossibleCarte(x, y - 1) && carte[x][y - 1] == "1") {
+									return new Coordonnees(x, y);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return null;
 	}
 }

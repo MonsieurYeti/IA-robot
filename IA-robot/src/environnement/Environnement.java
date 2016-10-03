@@ -4,10 +4,6 @@ import java.util.Random;
 
 import robot.Robot;
 
-/**
- * @author ggaillard
- *
- */
 public class Environnement {
 
 	public Case[][] cases = new Case[5][3];
